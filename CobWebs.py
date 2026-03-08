@@ -11,9 +11,9 @@ iter_function = sp.lambdify(x,iterable,"numpy")
 
 #Now, I have a function such that I plug in x, and I get the y
 
-repeats = int(input("Define how many times you'd like to repeat (the next 3 inputs must be integers) > "))
-upper_lim = int(input("Define the upper value that you want the line y = x to go to (and, in turn, the lower, + maximum y of the iterable function)> "))
-inital_x = int(input("Define the inital x > "))
+repeats = int(input("Define how many times you'd like to repeat (integer) > "))
+upper_lim = int(input("Define the upper value that you want the line y = x to go to (and, in turn, the lower, + maximum y of the iterable function, integer) > "))
+inital_x = float(input("Define the inital x (float) > "))
 inital_y = iter_function(inital_x)
 
 #Defining a few key variables
@@ -60,18 +60,18 @@ for repeat in range(repeats):
 
 #Finally, I want to reachor the camera to ensure that it looks cool.
 if Iter_in_graph and (new_x > inital_x and new_y > inital_y):
-    buffer = new_x*0.15
+    buffer = new_x*0.75
     axs.set_xlim(-abs(new_x) - buffer,abs(new_x) + buffer)
     axs.set_ylim(-abs(new_y) - buffer,abs(new_y) + buffer)
 
   
 elif not Iter_in_graph and (new_x > inital_x and new_y > inital_y):
-    buffer = new_y*0.15
+    buffer = new_y*0.75
     axs.set_xlim(-abs(x_iter_values) - buffer,abs(x_iter_values) + buffer)
     axs.set_ylim(-abs(y_iter_values) - buffer,abs(y_iter_values) + buffer)
 
 else:
-    buffer = inital_x*0.15
+    buffer = inital_x*0.75
     axs.set_xlim(-abs(inital_x) - buffer,abs(inital_x) + buffer)
     axs.set_ylim(-abs(inital_x) - buffer,abs(inital_x) + buffer)   
 
