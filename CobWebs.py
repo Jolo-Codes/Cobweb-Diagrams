@@ -12,7 +12,7 @@ iter_function = sp.lambdify(x,iterable,"numpy")
 #Now, I have a function such that I plug in x, and I get the y
 
 repeats = int(input("Define how many times you'd like to repeat (the next 3 inputs must be integers) > "))
-upper_lim = int(input("Define the upper value that you want the line y = x to go to (and, in tern, the lower)> "))
+upper_lim = int(input("Define the upper value that you want the line y = x to go to (and, in turn, the lower, + maximum y of the iterable function)> "))
 inital_x = int(input("Define the inital x > "))
 inital_y = iter_function(inital_x)
 
