@@ -59,13 +59,13 @@ for repeat in range(repeats):
     y_iter_values = new_y
 
 #Finally, I want to reachor the camera to ensure that it looks cool.
-if Iter_in_graph and (new_x > inital_x or new_y > inital_y):
+if Iter_in_graph and (new_x > inital_x and new_y > inital_y):
     buffer = new_x*0.15
     axs.set_xlim(-abs(new_x) - buffer,abs(new_x) + buffer)
     axs.set_ylim(-abs(new_y) - buffer,abs(new_y) + buffer)
 
   
-elif not Iter_in_graph and (new_x > inital_x or new_y > inital_y):
+elif not Iter_in_graph and (new_x > inital_x and new_y > inital_y):
     buffer = new_y*0.15
     axs.set_xlim(-abs(x_iter_values) - buffer,abs(x_iter_values) + buffer)
     axs.set_ylim(-abs(y_iter_values) - buffer,abs(y_iter_values) + buffer)
