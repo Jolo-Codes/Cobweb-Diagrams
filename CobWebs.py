@@ -14,6 +14,7 @@ iter_function = sp.lambdify(x,iterable,"numpy")
 repeats = int(input("Define how many times you'd like to repeat (the next 3 inputs must be integers) > "))
 upper_lim = int(input("Define the upper value that you want the line y = x to go to (and, in tern, the lower)> "))
 inital_x = int(input("Define the inital x > "))
+inital_y = iter_function(inital_x)
 
 #Defining a few key variables
 
@@ -29,14 +30,14 @@ axs.plot(x_values,iter_function(x_values),label = equation,color="blue")
 
 #Next, I will start to draw the cobweb, starting with step 3: draw from inital x, to line on reproduction
 
-axs.plot([inital_x, inital_x],[0,iter_function(inital_x)])
+axs.plot([inital_x, inital_x],[0,inital_y])
 
 #Next, I define the iteration structure, that performs steps 4-5
 #It starts with drawing a horizontal line to y = x
 #First, I will define the first values of x_iter and y_iter outside of the function
 
 x_iter_values = inital_x
-y_iter_values = iter_function(inital_x)
+y_iter_values = inital_y
 
 for repeat in range(repeats):
     #To draw horizontal line, as y = x, we first plot the current x and current y, then join it to the same y, but the x on the line y = x
@@ -58,14 +59,22 @@ for repeat in range(repeats):
     y_iter_values = new_y
 
 #Finally, I want to reachor the camera to ensure that it looks cool.
-if Iter_in_graph:
-    buffer = new_x*0.01
+if Iter_in_graph and (new_x > inital_x or new_y > inital_y):
+    buffer = new_x*0.15
     axs.set_xlim(-abs(new_x) - buffer,abs(new_x) + buffer)
     axs.set_ylim(-abs(new_y) - buffer,abs(new_y) + buffer)
-else:
-    buffer = new_y*0.01    
+
+  
+elif not Iter_in_graph and (new_x > inital_x or new_y > inital_y):
+    buffer = new_y*0.15
     axs.set_xlim(-abs(x_iter_values) - buffer,abs(x_iter_values) + buffer)
     axs.set_ylim(-abs(y_iter_values) - buffer,abs(y_iter_values) + buffer)
+
+else:
+    buffer = inital_x*0.15
+    axs.set_xlim(-abs(inital_x) - buffer,abs(inital_x) + buffer)
+    axs.set_ylim(-abs(inital_x) - buffer,abs(inital_x) + buffer)   
+
 
 axs.legend()
 plt.show()
